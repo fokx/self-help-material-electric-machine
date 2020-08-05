@@ -1,0 +1,186 @@
+%! Author = liu
+%! Date = 8/5/20
+
+% Preamble
+\documentclass{book}
+
+% Packages
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\usepackage{xeCJK}
+\usepackage{bm}
+\usepackage{times}
+%\usepackage{hyperref}
+\usepackage{url}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[numbers]{natbib}
+%\documentstyle[nips14submit_09,times,art10]{article} % For LaTeX 2.09
+\usepackage{array}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{thmnonumber}{Theorem}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+
+\title{电机学提纲}
+
+\author{
+刘沁阳,\\
+No department\\
+No university\\
+On earth \\
+}
+
+% Document
+\begin{document}
+    \maketitle
+
+    \tableofcontents
+
+    \chapter*{Preface}
+    This is a self-help book open sourced in Github Repo: \url{https://github.com/fokx/self-help-material/}.\\
+    Issues are welcomed.\\\\
+
+    出于方便记忆的目的，文中不乏口语化的表达。\\
+
+    This MATERIAL is provided WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED,
+    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+    TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE MATERIAL OR THE USE OR OTHER DEALINGS IN THE MATERIAL.
+
+
+    \chapter{电磁场基础}
+    电机中损耗包括：
+    \begin{enumerate}
+        \item 铜线中损耗（铜耗）
+        \item 机械损耗
+        \item 铁耗：
+        \begin{itemize}
+            \item 磁致损耗（70\%，直流下认为没有）$p_{h}=C_{h} f B_{m}^n V$
+            \item 涡流损耗（30\%，采用硅钢片后大大减小） $p_{e}=C_{e} \Delta^2 f^2 B_{m}^2 V$ %TODO check delta on book
+        \end{itemize}
+    \end{enumerate}
+
+    采用硅钢片减小涡流损耗的原理：
+    片与片之间绝缘，使电流流动的路径更窄，从而R更大，I更小，$p_{e}$更小。并且掺入的硅增加导磁，减小导电性能。
+
+
+    \chapter{直流电机}
+
+
+    \section{结构}
+    \begin{enumerate}
+        \item 电枢
+        \item 励磁绕组
+        \item 电枢绕组
+    \end{enumerate}
+    补偿绕组对称中心在两个相邻磁极的中心线上
+
+
+    \section{绕组展开图}
+    虚槽数$Z_{u}$ = 元件数S = 换向片数K\\
+    极距$\tau$：相邻磁极之间的虚槽数，$\tau = {Z_{u} \over {2 p}}$\\
+    线圈宽度$y_{1}={Z_{u} \over {2 p}} \mp \epsilon$，优先减\\\\
+    单叠绕组$y=1$，双叠绕组$y=2$\\
+    $y_{k}=y=1, y_{2}=y_{1} \mp 1$（优先减，减1：右行绕组，加1：左行绕组）\\
+
+    实线：上层边，虚线：下层边\\
+    找一虚一实，找对称中心，画点画线\\
+    两实线距离 = 换向片宽度 = 电刷宽度 = 磁极间距\\
+
+    每一个线圈连一个换向片，线圈越多，输出转矩和感应电势越稳定\\
+
+
+    \section{直流电机中的磁场分析}
+    电机中的B指的是径向磁密。\\
+    \subparagraph*{串励}
+    \subparagraph*{并励}
+    \subparagraph*{复励}
+    积复励/加复励（串联磁动势与并联磁动势同向，增强）\\
+    减复励/差复励\\
+    平复励（额定点和空载时一样）\\\\
+    短复励（短分接法）：先并后串\\
+    长复励（长分接法）：\\
+
+    线负荷/电负荷：$A={{N i_{a}} \over {\pi D_{a}}}$,
+    $F_{a} = A x (-{\tau \over 2} < x < {\tau \over 2})$\\
+
+    交轴电枢反应/交磁作用：磁场零点偏移，极下磁通减小\\
+    直轴电枢反应：增磁/去磁
+
+    --发电机/电动机 顺/逆电机转向移动电刷，是去磁还是增磁？
+
+
+    --电枢反应时，总磁通量如何变化？\\
+    --正常工作时，由于饱和，极下总磁通减小。
+    \section{功率流程}
+    发电机：额定功率是输出电功率\\
+    电动机：额定功率是输出机械功率（$P_{N}=U_{N} I_{N} \eta_{N}$）
+
+
+    \section{制动}
+
+    \paragraph{能耗制动}
+    断电串电阻，R越小制动越快，R大到开路等于没有能耗制动。
+    \subparagraph*{能耗制动过程}
+    \subparagraph*{能耗制动运行}位能性恒转矩负载
+
+    \paragraph{反接制动（电压反接）}反压串电阻，适用于需要反向启动的设备
+
+    \paragraph{倒拉反转（电势反接）}直接船电阻，斜率很大，进入第IV象限
+
+    \paragraph{回馈制动}$E_{a}>U$
+
+
+    \section{电机的换向}
+    换向：线圈中电流改变\\
+    转向：旋转方向改变
+
+    \paragraph{换向的问题}
+    换向时，由于:\\
+    电流变化率大，产生电抗电势\\
+    几何中性线上由于电枢反应$B\neq0$，产生切割电势\\
+    电流换向受到阻碍，发生环火（一圈都是火花）。
+
+    \paragraph{帮助换向的措施}
+    \begin{enumerate}
+        \item 装换向极：让交轴上B为0,去掉切割电势，再增加B，以抵消电抗电势
+        \item 装补偿绕组：抵消电枢反应电势，去掉切割电势
+        \item 移动电刷位置：把电刷装在$B=0$的位置，没有切割电势
+    \end{enumerate}
+
+
+    \section{复习}
+    直流电动机和发电机一般分别设计使用，一般不混用。\\
+    单叠绕组：有几个极(2p)就有几条路(2a)，每个极下所有元件串联成一条路。\\
+    双叠绕组：并联支路数为极数的2倍，是并联绕组。\\
+    单波绕组：并联支路数为2。\\
+    磁场分布（磁通密度B沿电枢圆周的分布情况）：几何中性线是磁场方向的切换线。
+    空载运行时只有主磁场，分布是一个平顶的帽型。
+    电枢磁场：电枢磁势最强处在几何中性线上，但会凹陷，形成马鞍形波。
+
+
+    \chapter{变压器}
+
+
+    \chapter{交流电机的原理}
+
+
+    \chapter{异步电机}
+
+
+    \chapter{同步电机}
+
+
+%    \bibliography{main}
+%    \bibliographystyle{plain}
+
+\end{document}
